@@ -1,3 +1,7 @@
+# הקובץ הזה גורם לתיקייה שבו הוא נמצא להפוך לספריית פייתון
+# זה נועד לכך שכאשר נעשה import לספרייה הזאת, יהיה אפשר להריץ את התוכן שלה אוטומטית כאשר נבצעה לספריה אימפורט
+
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path
@@ -13,6 +17,7 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     db.init_app(app)
 
+    # נגדיר כאן את כל קבצי הPY שבתוכם קישור לדפים של האפליקציה
     from .views import views
     from .auth import auth
 

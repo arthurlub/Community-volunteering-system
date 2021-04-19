@@ -35,3 +35,15 @@ def delete_note():
             db.session.commit()
 
     return jsonify({})
+
+
+# Neomis pages
+
+@views.route('/company-registration', methods=['GET', 'POST'])
+def company_registration():
+    return render_template("company-registration.html", user=current_user)
+
+
+@views.route('/volunteering-catalog', methods=['GET', 'POST'])
+def volunteering_catalog():
+    return render_template("volunteering-catalog.html", user=current_user)
