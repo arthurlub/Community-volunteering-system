@@ -1,8 +1,5 @@
 from __future__ import print_function
-import datetime
 import os.path
-import pickle
-
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
@@ -66,6 +63,7 @@ def company_registration():
     return render_template("company-registration.html", user=current_user)
 
 
+
 @views.route('/volunteering-catalog', methods=['GET', 'POST'])
 def volunteering_catalog():
     if request.method == 'POST':
@@ -117,6 +115,7 @@ def volunteering_catalog():
         event = service.events().insert(calendarId='primary', body=event).execute()
         flash('Done!', category='success')
     return render_template("volunteering-catalog.html", user=current_user)
+
 
 
 # Admin pages
