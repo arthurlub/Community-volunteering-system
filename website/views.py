@@ -1,7 +1,8 @@
 from __future__ import print_function
 from flask import Blueprint, render_template, request, flash, jsonify
 from flask_login import login_required, current_user
-from .models import Note, VolunteerGroup, Organization
+from .models import Note, VolunteerGroup, Organization ,User
+from sqlalchemy import update
 from . import db
 import json
 import os.path
@@ -68,9 +69,12 @@ def home():
     org = Organization.query.all()
     for ob in org:
         org_list.append(ob)
-
     if request.method == 'POST':
-
+        org_id = request.form.get('org_id')
+        value = User.query.filter_by(id=1).first()
+        value.organization_id = int(org_id)
+        db.session.commit()
+        flash("Done!", category='success')
 
     return render_template("volunteering-catalog.html", org=org_list, user=current_user)
 

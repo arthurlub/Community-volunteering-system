@@ -2,95 +2,63 @@
 {% block title %}volunteering catalog{% endblock %}
 {% block content %}
 
- <div class="oranization-list-container">
-     <img class= "organization-img" src="/static/volunteering catalog/charity.png" alt="">
-     <h1  class= "organization-title"> ארגוני התנדבות</h1>
-        <div class= "organization-wrapper">
-            <div class="organization-list" >
-                <div class= "organization-list-item">
-                    <img class= "organization-list-item-img" src= "/static/volunteering catalog/img2.png" alt="">
-                    <span class= "organization-list-item-title"> {{org[0].name}} </span>
-                    <p class= "organization-list-item-desc">
-                        {{org[0].description}}                    </p>
-                    <button class = "organnization-list-item-button"> להרשמה </button>
-                </div> <div class= "organization-list-item">
-                    <img class= "organization-list-item-img" src= "/static/volunteering catalog/img2.png" alt="">
-                    <span class= "organization-list-item-title"> {{org[1].name}} </span>
-                    <p class= "organization-list-item-desc">
-                        {{org[1].description}}
-                    </p>
+<div class="oranization-list-container">
+    <img class="organization-img" src="/static/volunteering catalog/charity.png" alt="">
+    <h1 class="organization-title"> ארגוני התנדבות</h1>
+    <div class="organization-wrapper">
+        <div class="organization-list">
 
-                    <button class = "organnization-list-item-button"> להרשמה </button>
-                </div> <div class= "organization-list-item">
-                    <img class= "organization-list-item-img" src= "/static/volunteering catalog/img2.png" alt="">
-                    <span class= "organization-list-item-title"> {{org[2].name}} </span>
-                    <p class= "organization-list-item-desc">
-                        {{org[2].description}}
-                    </p>
-                    <button class = "organnization-list-item-button"> להרשמה </button>
-                </div> <div class= "organization-list-item">
-                    <img class= "organization-list-item-img" src= "/static/volunteering catalog/img2.png" alt="">
-                    <span class= "organization-list-item-title"> {{org[3].name}} </span>
-                    <p class= "organization-list-item-desc">
-                        {{org[3].description}}
-                    </p>
-                    <button class = "organnization-list-item-button"> להרשמה </button>
-                </div> <div class= "organization-list-item">
-                    <img class= "organization-list-item-img" src= "/static/volunteering catalog/img2.png" alt="">
-                    <span class= "organization-list-item-title"> {{org[4].name}} </span>
-                    <p class= "organization-list-item-desc">
-                        {{org[4].description}}
-                    </p>
-                    <button class = "organnization-list-item-button"> להרשמה </button>
-                </div> <div class= "organization-list-item">
-                    <img class= "organization-list-item-img" src= "/static/volunteering catalog/img2.png" alt="">
-                    <span class= "organization-list-item-title"> {{org[5].name}} </span>
-                    <p class= "organization-list-item-desc">
-                        {{org[5].description}}
-                    </p>
-                    <button class = "organnization-list-item-button"  >להרשמה</button>
-           </div>
-        </div>
-    </div>
-    <div class="modal" id="email-modal" dir="ltr">
-        <div class="modal-content">
-            <div class="modal-content-left">
-            </div>
-            <div class="modal-content-right" dir="rtl">
-                <span class="close-btn">&times;</span>
-                <div id="error"></div>
-                <form method="POST">
-                 <h2 >הרשמה להתנדבות</h2>
-                 <div class="form-validation">
-                     <input type="text" class= "modal-input" id="firstname" name="firstname" placeholder="הכנס/י שם פרטי" >
-                     <p>Error message</p>
-                    </div>
-                 <div class="form-validation">
-                     <input type="text" class="modal-input" id="lastname" placeholder= "הכנס/י שם משפחה">
-                     <p>Error message </p>
-                    </div>
-                 <div class="form-validation">
-                     <input type="text" class="modal-input" id="phone" name= "phone" placeholder= "הכנס/י מספר טלפון">
-                     <p>Error message</p>
-                    </div>
-                 <div class="form-validation">
-                     <input type="email" class="modal-input" name ="email" id="email" name= "email" placeholder= "הכנס/י אימייל">
-                     <p>Error message</p>
-                    </div>
-                 <div class="form-validation">
-                    <label class ="gender" for="gender">מין</label>
-                    <select id="gender">
-                      <option value="" disabled selected>בחר/י אפשרות</option>
-                      <option value="male">נקבה</option>
-                      <option value="female">זכר</option>
-                      <option value="other">אחר</option>
-                    </select>
-                    <p>Error message</p>
+            <form method="POST">
+                <input type="hidden" id="org_id" name="org_id" value={{org[0].id}}><br><br>
+            <div class="organization-list-item">
+                <img class="organization-list-item-img" src="/static/volunteering catalog/img2.png" alt="">
+                <span class="organization-list-item-title"> {{org[0].name}} </span>
+                <p class="organization-list-item-desc">
+                    {{org[0].description}} </p>
+                <button class="organnization-list-item-button" type="submit" value="Submit"> רשמו אותי</button>
                  </div>
+            </form>
+            <div class="organization-list-item">
+                <img class="organization-list-item-img" src="/static/volunteering catalog/img2.png" alt="">
+                <span class="organization-list-item-title"> {{org[1].name}} </span>
+                <p class="organization-list-item-desc">
+                    {{org[1].description}}
+                </p>
 
-                 <input type="submit" class="modal-input-btn"  value="!רשמו אותי">
-                </form>
+                <button class="organnization-list-item-button"> רשמו אותי</button>
+            </div>
+            <div class="organization-list-item">
+                <img class="organization-list-item-img" src="/static/volunteering catalog/img2.png" alt="">
+                <span class="organization-list-item-title"> {{org[2].name}} </span>
+                <p class="organization-list-item-desc">
+                    {{org[2].description}}
+                </p>
+                <button class="organnization-list-item-button"> רשמו אותי</button>
+            </div>
+            <div class="organization-list-item">
+                <img class="organization-list-item-img" src="/static/volunteering catalog/img2.png" alt="">
+                <span class="organization-list-item-title"> {{org[3].name}} </span>
+                <p class="organization-list-item-desc">
+                    {{org[3].description}}
+                </p>
+                <button class="organnization-list-item-button"> רשמו אותי</button>
+            </div>
+            <div class="organization-list-item">
+                <img class="organization-list-item-img" src="/static/volunteering catalog/img2.png" alt="">
+                <span class="organization-list-item-title"> {{org[4].name}} </span>
+                <p class="organization-list-item-desc">
+                    {{org[4].description}}
+                </p>
+                <button class="organnization-list-item-button"> רשמו אותי</button>
+            </div>
+            <div class="organization-list-item">
+                <img class="organization-list-item-img" src="/static/volunteering catalog/img2.png" alt="">
+                <span class="organization-list-item-title"> {{org[5].name}} </span>
+                <p class="organization-list-item-desc">
+                    {{org[5].description}}
+                </p>
+                <button class="organnization-list-item-button">רשמו אותי</button>
             </div>
         </div>
     </div>
-{% endblock %}
+    {% endblock %}
