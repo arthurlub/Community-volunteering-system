@@ -17,18 +17,24 @@ views = Blueprint('views', __name__)
 @views.route('/notes', methods=['GET', 'POST'])
 @login_required
 def note():
+    notes = Note.query.all()
+    notes_list = []
+    for note in notes:
+        user1 = User.query.filter_by(id=note.user_id).first()
+        temp_dict = {'user_name':user1.first_name, 'note':note}
+        notes_list.append(temp_dict)
+
     if request.method == 'POST':
         note = request.form.get('note')
-
         if len(note) < 1:
             flash('Note is too short!', category='error')
         else:
             new_note = Note(data=note, user_id=current_user.id)
             db.session.add(new_note)
             db.session.commit()
-            flash('Note added!', category='success')
+            flash('Note added, please refresh the page!', category='success')
 
-    return render_template("note.html", user=current_user)
+    return render_template("note.html", notes =notes_list ,user=current_user)
 
 
 @views.route('/delete-note', methods=['POST'])
@@ -71,7 +77,7 @@ def home():
         org_list.append(ob)
     if request.method == 'POST':
         org_id = request.form.get('org_id')
-        value = User.query.filter_by(id=1).first()
+        value = User.query.filter_by(id=current_user.id).first()
         value.organization_id = int(org_id)
         db.session.commit()
         flash("Done!", category='success')

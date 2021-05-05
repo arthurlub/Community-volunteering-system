@@ -2,63 +2,83 @@
 {% block title %}volunteering catalog{% endblock %}
 {% block content %}
 
-<div class="oranization-list-container">
     <img class="organization-img" src="/static/volunteering catalog/charity.png" alt="">
     <h1 class="organization-title"> ארגוני התנדבות</h1>
     <div class="organization-wrapper">
         <div class="organization-list">
 
-            <form method="POST">
-                <input type="hidden" id="org_id" name="org_id" value={{org[0].id}}><br><br>
             <div class="organization-list-item">
-                <img class="organization-list-item-img" src="/static/volunteering catalog/img2.png" alt="">
-                <span class="organization-list-item-title"> {{org[0].name}} </span>
-                <p class="organization-list-item-desc">
-                    {{org[0].description}} </p>
-                <button class="organnization-list-item-button" type="submit" value="Submit"> רשמו אותי</button>
-                 </div>
-            </form>
-            <div class="organization-list-item">
-                <img class="organization-list-item-img" src="/static/volunteering catalog/img2.png" alt="">
-                <span class="organization-list-item-title"> {{org[1].name}} </span>
-                <p class="organization-list-item-desc">
-                    {{org[1].description}}
-                </p>
+                <form method="POST">
+                    <input type="hidden" name="org_id" value={{org[0].id}}><br><br>
+                    <img class="organization-list-item-img" src="/static/volunteering catalog/img2.png" alt="">
+                    <span class="organization-list-item-title"> {{org[0].name}} </span>
+                    <p class="organization-list-item-desc">
+                        {{org[0].description}} </p>
+                    <button class="organnization-list-item-button" type="submit" value="Submit"> רשמו אותי</button>
+                </form>
+            </div>
 
-                <button class="organnization-list-item-button"> רשמו אותי</button>
-            </div>
             <div class="organization-list-item">
-                <img class="organization-list-item-img" src="/static/volunteering catalog/img2.png" alt="">
-                <span class="organization-list-item-title"> {{org[2].name}} </span>
-                <p class="organization-list-item-desc">
-                    {{org[2].description}}
-                </p>
-                <button class="organnization-list-item-button"> רשמו אותי</button>
+
+                <form method="POST">
+                    <input type="hidden" name="org_id" value={{org[1].id}}><br><br>
+                    <img class="organization-list-item-img" src="/static/volunteering catalog/img2.png" alt="">
+                    <span class="organization-list-item-title"> {{org[1].name}} </span>
+                    <p class="organization-list-item-desc">
+                        {{org[1].description}}
+                    </p>
+                    <button class="organnization-list-item-button" type="submit" value="Submit"> רשמו אותי</button>
+                </form>
             </div>
+
             <div class="organization-list-item">
-                <img class="organization-list-item-img" src="/static/volunteering catalog/img2.png" alt="">
-                <span class="organization-list-item-title"> {{org[3].name}} </span>
-                <p class="organization-list-item-desc">
-                    {{org[3].description}}
-                </p>
-                <button class="organnization-list-item-button"> רשמו אותי</button>
+                <form method="POST">
+                    <input type="hidden" name="org_id" value={{org[2].id}}><br><br>
+                    <img class="organization-list-item-img" src="/static/volunteering catalog/img2.png" alt="">
+                    <span class="organization-list-item-title"> {{org[2].name}} </span>
+                    <p class="organization-list-item-desc">
+                        {{org[2].description}}
+                    </p>
+                    <button class="organnization-list-item-button" type="submit" value="Submit"> רשמו אותי</button>
+                </form>
             </div>
+
             <div class="organization-list-item">
-                <img class="organization-list-item-img" src="/static/volunteering catalog/img2.png" alt="">
-                <span class="organization-list-item-title"> {{org[4].name}} </span>
-                <p class="organization-list-item-desc">
-                    {{org[4].description}}
-                </p>
-                <button class="organnization-list-item-button"> רשמו אותי</button>
+                <form method="POST">
+                    <input type="hidden" name="org_id" value={{org[3].id}}><br><br>
+                    <img class="organization-list-item-img" src="/static/volunteering catalog/img2.png" alt="">
+                    <span class="organization-list-item-title"> {{org[3].name}} </span>
+                    <p class="organization-list-item-desc">
+                        {{org[3].description}}
+                    </p>
+                    <button class="organnization-list-item-button" type="submit" value="Submit"> רשמו אותי</button>
+                </form>
             </div>
+
             <div class="organization-list-item">
-                <img class="organization-list-item-img" src="/static/volunteering catalog/img2.png" alt="">
-                <span class="organization-list-item-title"> {{org[5].name}} </span>
-                <p class="organization-list-item-desc">
-                    {{org[5].description}}
-                </p>
-                <button class="organnization-list-item-button">רשמו אותי</button>
+                <form method="POST">
+                    <input type="hidden" name="org_id" value={{org[4].id}}><br><br>
+                    <img class="organization-list-item-img" src="/static/volunteering catalog/img2.png" alt="">
+                    <span class="organization-list-item-title"> {{org[4].name}} </span>
+                    <p class="organization-list-item-desc">
+                        {{org[4].description}}
+                    </p>
+                    <button class="organnization-list-item-button" type="submit" value="Submit"> רשמו אותי</button>
+                </form>
             </div>
+
+            <div class="organization-list-item">
+                <form method="POST">
+                    <input type="hidden" name="org_id" value={{org[5].id}}><br><br>
+                    <img class="organization-list-item-img" src="/static/volunteering catalog/img2.png" alt="">
+                    <span class="organization-list-item-title"> {{org[5].name}} </span>
+                    <p class="organization-list-item-desc">
+                        {{org[5].description}}
+                    </p>
+                    <button class="organnization-list-item-button" type="submit" value="Submit"> רשמו אותי</button>
+                </form>
+            </div>
+
+
         </div>
-    </div>
     {% endblock %}
