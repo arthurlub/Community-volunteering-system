@@ -1,7 +1,7 @@
 from __future__ import print_function
 from flask import Blueprint, render_template, request, flash, jsonify
 from flask_login import login_required, current_user
-from .models import Note, VolunteerGroup, Organization ,User
+from .models import Note, VolunteerGroup, Organization, User
 from sqlalchemy import update
 from . import db
 import json
@@ -21,7 +21,7 @@ def note():
     notes_list = []
     for note in notes:
         user1 = User.query.filter_by(id=note.user_id).first()
-        temp_dict = {'user_name':user1.first_name, 'note':note}
+        temp_dict = {'user_name': user1.first_name, 'note': note}
         notes_list.append(temp_dict)
 
     if request.method == 'POST':
@@ -34,7 +34,7 @@ def note():
             db.session.commit()
             flash('Note added, please refresh the page!', category='success')
 
-    return render_template("note.html", notes =notes_list ,user=current_user)
+    return render_template("note.html", notes=notes_list, user=current_user)
 
 
 @views.route('/delete-note', methods=['POST'])
@@ -42,11 +42,14 @@ def delete_note():
     note = json.loads(request.data)
     noteId = note['noteId']
     note = Note.query.get(noteId)
+    username = User.query.filter_by(id=note.user_id).first()
     if note:
         if note.user_id == current_user.id:
             db.session.delete(note)
             db.session.commit()
-    return jsonify({})
+        else:
+            flash(f'this is {username.first_name}\'s note, so you cant delete it', category='success')
+        return jsonify({})
 
 
 # Neomis pages
