@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+  <h3 align="center">דף התנדבות אישי</h3>
+
+    <p>User name:  {{user.first_name}}</p>
+<br>
+
+    <p>Email Address: {{user.email}} </p>
+
+  <p>Organization: {{org.name}}</p>
+
+<form method="POST">
+
+
+  <br/><br/><br/>
+<div class="rating_scale">
+  <label>
+    <input type="radio" value=1 name="rating"/><span>1</span>
+  </label>
+  <label>
+    <input type="radio" value=2 name="rating"/><span>2</span>
+  </label>
+  <label>
+    <input type="radio" value=3 name="rating"/><span>3</span>
+  </label>
+  <label>
+    <input type="radio" value=4 name="rating"/><span>4</span>
+  </label>
+  <label>
+    <input type="radio" value=5 name="rating"/><span>5</span>
+  </label>
+</div>
+
+  <br />
+  <button type="submit" name = "submit_but" class="btn btn-primary">שליח דירוג</button>
+</form>
+  <br/><br/><br/>
+
+
+
+
+{% endblock %}

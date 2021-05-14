@@ -4,7 +4,6 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-
     <!-- bootstrap cdn -->
     <link
             rel="stylesheet"
@@ -21,8 +20,10 @@
     <!--עיצוב לעמוד קטלוג ההתנדבויות-->
     <link rel="stylesheet" href="/static/volunteering-catalog.css">
 
+
     <!--עיצוב לעמוד הרשמה להתנדבויות-->
     <link rel="stylesheet" href="/static/company-registration.css">
+
 
     <!-- השורה למטה מאפשרת לתת שם שונה לכל עמוד HTML באמצעות הורשה של דף base.html ושימוש בשפת JINGA-->
     <title>{% block title %}Home{% endblock %}</title>
@@ -45,6 +46,7 @@
             <a class="nav-item nav-link" id="home" href="/">דף הבית</a>
             <a class="nav-item nav-link" id="company-registration" href="/company-registration">יצירת קבוצת התנדבות</a>
             <a class="nav-item nav-link" id="volunteering-catalog" href="/notes">פורום מתנדבים</a>
+            <a class="nav-item nav-link" id="Personal-page" href="/personal-page">דף ההתנדבות שלי</a>
             <a class="nav-item nav-link" id="logout" href="/logout">התנתקות</a>
 
             {% else %}
@@ -76,8 +78,12 @@ messages %} {% for category, message in messages %} {% if category ==
 {% endif %} {% endfor %} {% endif %} {% endwith %}
 
 
-<!-- Jquery cdn -->
+<!-- HTML content -->
+
 <div class="container">{% block content %} {% endblock %}</div>
+
+
+<!-- Jquery cdn -->
 <script
         src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -99,7 +105,6 @@ messages %} {% for category, message in messages %} {% if category ==
         type="text/javascript"
         src="{{ url_for('static', filename='voluntiring-catalog-popup.js') }}"
 ></script>
-
 
 
 <!-- to add images, javascript and css file from the static folder - we use the code below-->

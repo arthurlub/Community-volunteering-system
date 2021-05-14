@@ -92,3 +92,17 @@ def home():
 @views.route('/Admin', methods=['GET', 'POST'])
 def admin_panel():
     return render_template("admin-page.html", user=current_user)
+
+# personal page
+@views.route('/personal-page', methods=['GET', 'POST'])
+def personalpage():
+    org = Organization.query.filter_by(id=current_user.organization_id).first()
+    if request.method == 'POST':
+       if 'submit_but' in request.form:
+           ans = request.form['rating']
+           org.votersNumber += 1
+           cur_rating = (1 / (org.votersNumber)*int(ans)) + (((org.votersNumber-1)/org.votersNumber)*org.rating)
+           org.rating = cur_rating
+           db.session.commit()
+       flash(ans, category='success')
+    return render_template("personal-page.html", user=current_user ,org = org)

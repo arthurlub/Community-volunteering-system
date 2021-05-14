@@ -1379,7 +1379,7 @@
     <column id="504" parent="171" name="rating">
       <Position>5</Position>
       <DataType>double|0s</DataType>
-      <DefaultExpression>None</DefaultExpression>
+      <DefaultExpression>0</DefaultExpression>
     </column>
     <column id="505" parent="171" name="votersNumber">
       <Position>6</Position>
