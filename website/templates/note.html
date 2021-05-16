@@ -10,7 +10,9 @@
         message:
         {{ note['note'].data }}
         <button type="button" class="close" onClick="deleteNote({{ note['note'].id }})">
+            {% if (user.id == note['note'].user_id) or (user.id == 0) %}
             <span aria-hidden="true">&times;</span>
+            {% endif %}
         </button>
     </li>
     {% endfor %}

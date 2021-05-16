@@ -46,14 +46,17 @@
             <a class="nav-item nav-link" id="home" href="/">דף הבית</a>
             <a class="nav-item nav-link" id="company-registration" href="/company-registration">יצירת קבוצת התנדבות</a>
             <a class="nav-item nav-link" id="volunteering-catalog" href="/notes">פורום מתנדבים</a>
-            <a class="nav-item nav-link" id="Personal-page" href="/personal-page">דף ההתנדבות שלי</a>
+                {% if user.id == 0 %}
+                <a class="nav-item nav-link" id="Admin" href="/Admin">דף מנהל</a>
+                {% else %}
+                <a class="nav-item nav-link" id="Personal-page" href="/personal-page">דף אישי</a>
+                {% endif %}
             <a class="nav-item nav-link" id="logout" href="/logout">התנתקות</a>
-
             {% else %}
             <a class="nav-item nav-link" id="login" href="/login">התחברות</a>
             <a class="nav-item nav-link" id="signUp" href="/sign-up">הרשמה</a>
-            <a class="nav-item nav-link" id="Admin" href="/Admin">התחברות מנהל</a>
             {% endif %}
+
         </div>
     </div>
 </nav>

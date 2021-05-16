@@ -44,7 +44,7 @@ def delete_note():
     note = Note.query.get(noteId)
     username = User.query.filter_by(id=note.user_id).first()
     if note:
-        if note.user_id == current_user.id:
+        if note.user_id == current_user.id or current_user.id == 0:
             db.session.delete(note)
             db.session.commit()
         else:
@@ -90,19 +90,25 @@ def home():
 
 # Admin pages
 @views.route('/Admin', methods=['GET', 'POST'])
-def admin_panel():
-    return render_template("admin-page.html", user=current_user)
+def admin_page():
+    if current_user.id == 0:
+        users_list = User.query.all()
+        return render_template("admin-page.html" ,users = users_list,user=current_user)
+
 
 # personal page
 @views.route('/personal-page', methods=['GET', 'POST'])
 def personalpage():
     org = Organization.query.filter_by(id=current_user.organization_id).first()
     if request.method == 'POST':
-       if 'submit_but' in request.form:
-           ans = request.form['rating']
-           org.votersNumber += 1
-           cur_rating = (1 / (org.votersNumber)*int(ans)) + (((org.votersNumber-1)/org.votersNumber)*org.rating)
-           org.rating = cur_rating
-           db.session.commit()
-       flash(ans, category='success')
-    return render_template("personal-page.html", user=current_user ,org = org)
+        if current_user.organization_id != None:
+            if 'submit_but' in request.form:
+                ans = request.form['rating']
+                org.votersNumber += 1
+                cur_rating = (1 / (org.votersNumber) * int(ans)) + (((org.votersNumber - 1) / org.votersNumber) * org.rating)
+                org.rating = cur_rating
+                db.session.commit()
+                flash("הדירוג התקבל בהצלחה! תודה על הביקורת", category='success')
+        else:
+            flash("!אתה לא רשום לאף קבוצת התנדבות, ולכן אין באפשרותך לדרג", category='error')
+    return render_template("personal-page.html", user=current_user, org=org)

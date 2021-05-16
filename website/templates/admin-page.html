@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+  <h3 align="center">דף מנהל</h3>
+  <br/><br/><br/>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Organization</th>
+      <th scope="col">Kaftor</th>
+    </tr>
+  </thead>
+    {%for us in users %}
+
+  <tbody>
+    <tr>
+      <th scope="row">{{loop.index}}</th>
+      <td>{{us.first_name}}</td>
+      <td>{{us.email}}</td>
+      <td>gfdgfdgfdg</td>
+      <td>
+        <button type="button" class="btn btn-dark" >Dark</button>
+      </td>
+    </tr>
+  </tbody>
+    {% endfor %}
+</table>
+
+
+
+{% endblock %}
