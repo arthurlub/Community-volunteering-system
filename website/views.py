@@ -90,3 +90,10 @@ def personalpage():
 @views.route('/stop-vol', methods=['POST'])
 def stop_vol():
     be.stop_volunteering()
+
+
+# personal-recommendations
+@views.route('/personal-recommendations', methods=['GET', 'POST'])
+def personal_recommendations():
+    org = be.organization_rating()
+    return render_template("personal-recommendations.html", user=current_user, org=org)
