@@ -8,11 +8,24 @@
 
     <p>Email Address: {{user.email}} </p>
 
-  <p>Organization: {{org.name}}</p>
+
+<table class="table table-borderless w-50 p-3">
+  <thead>
+    <tr>
+      <td scope="col">Organization:</td>
+      <td scope="col">{{org.name}}</td>
+      <td scope="col">
+        <button type="button" class="close" onClick="stopVol({{user.id }})">X</button>
+      </td>
+    </tr>
+  </thead>
+</table>
+
+
+
+
 
 <form method="POST">
-
-
   <br/><br/><br/>
 <div class="rating_scale">
   <label>
@@ -33,7 +46,7 @@
 </div>
 
   <br />
-  <button type="submit" name = "submit_but" class="btn btn-primary">שליח דירוג</button>
+  <button type="submit" name = "submit_but" class="btn btn-primary">שלח דירוג</button>
 </form>
   <br/><br/><br/>
 

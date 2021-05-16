@@ -5,6 +5,7 @@ from .models import Note, VolunteerGroup, Organization, User
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from . import db
 import json
+from . import be
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
@@ -22,37 +23,17 @@ def note():
         user1 = User.query.filter_by(id=note.user_id).first()
         temp_dict = {'user_name': user1.first_name, 'note': note}
         notes_list.append(temp_dict)
-
     if request.method == 'POST':
-        note = request.form.get('note')
-        if len(note) < 1:
-            flash('Note is too short!', category='error')
-        else:
-            new_note = Note(data=note, user_id=current_user.id)
-            db.session.add(new_note)
-            db.session.commit()
-            flash('Note added, please refresh the page!', category='success')
-
+        be.add_note()
     return render_template("note.html", notes=notes_list, user=current_user)
 
 
 @views.route('/delete-note', methods=['POST'])
 def delete_note():
-    note = json.loads(request.data)
-    noteId = note['noteId']
-    note = Note.query.get(noteId)
-    username = User.query.filter_by(id=note.user_id).first()
-    if note:
-        if note.user_id == current_user.id or current_user.id == 0:
-            db.session.delete(note)
-            db.session.commit()
-        else:
-            flash(f'this is {username.first_name}\'s note, so you cant delete it', category='success')
-        return jsonify({})
+    be.delete_note()
 
 
-# Neomis pages
-
+# page to delete
 @views.route('/company-registration', methods=['GET', 'POST'])
 def company_registration():
     if request.method == 'POST':
@@ -65,7 +46,6 @@ def company_registration():
                               description=description)
         db.session.add(comp)
         db.session.commit()
-
         flash('Done!', category='success')
 
     return render_template("company-registration.html", user=current_user)
@@ -79,12 +59,7 @@ def home():
         for ob in org:
             org_list.append(ob)
         if request.method == 'POST':
-            org_id = request.form.get('org_id')
-            value = User.query.filter_by(id=current_user.id).first()
-            value.organization_id = int(org_id)
-            db.session.commit()
-            flash("Done!", category='success')
-
+            be.volunteer_registration()
         return render_template("volunteering-catalog.html", org=org_list, user=current_user)
     else:
         return redirect(url_for('auth.login'))
@@ -95,22 +70,23 @@ def home():
 def admin_page():
     if current_user.id == 0:
         users_list = User.query.all()
-        return render_template("admin-page.html" ,users = users_list,user=current_user)
+        users_organization_info = []
+        for user in users_list:
+            if user.id != 0 and user.organization_id != None:
+                org = Organization.query.filter_by(id=user.organization_id).first()
+                temp_dict = {'user':user, 'org':org}
+                users_organization_info.append(temp_dict)
+        if request.method == 'POST':
+            be.stop_volunteering()
+        return render_template("admin-page.html", users= users_organization_info, user=current_user)
 
 
 # personal page
 @views.route('/personal-page', methods=['GET', 'POST'])
 def personalpage():
-    org = Organization.query.filter_by(id=current_user.organization_id).first()
-    if request.method == 'POST':
-        if current_user.organization_id != None:
-            if 'submit_but' in request.form:
-                ans = request.form['rating']
-                org.votersNumber += 1
-                cur_rating = (1 / (org.votersNumber) * int(ans)) + (((org.votersNumber - 1) / org.votersNumber) * org.rating)
-                org.rating = cur_rating
-                db.session.commit()
-                flash("הדירוג התקבל בהצלחה! תודה על הביקורת", category='success')
-        else:
-            flash("!אתה לא רשום לאף קבוצת התנדבות, ולכן אין באפשרותך לדרג", category='error')
+    org = be.organization_rating()
     return render_template("personal-page.html", user=current_user, org=org)
+
+@views.route('/stop-vol', methods=['POST'])
+def stop_vol():
+    be.stop_volunteering()

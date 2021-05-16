@@ -44,7 +44,6 @@
         <div class="navbar-nav">
             {% if user.is_authenticated %}
             <a class="nav-item nav-link" id="home" href="/">דף הבית</a>
-            <a class="nav-item nav-link" id="company-registration" href="/company-registration">יצירת קבוצת התנדבות</a>
             <a class="nav-item nav-link" id="volunteering-catalog" href="/notes">פורום מתנדבים</a>
                 {% if user.id == 0 %}
                 <a class="nav-item nav-link" id="Admin" href="/Admin">דף מנהל</a>

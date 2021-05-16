@@ -1,35 +1,39 @@
 {% extends "base.html" %}
 {% block title %}Login{% endblock %}
 {% block content %}
-  <h3 align="center">דף מנהל</h3>
-  <br/><br/><br/>
+<h3 align="center">דף מנהל</h3>
+<br/><br/><br/>
 
 <table class="table">
-  <thead class="thead-dark">
+    <thead class="thead-dark">
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Organization</th>
-      <th scope="col">Kaftor</th>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Organization</th>
+        <th scope="col">stop volunteering</th>
     </tr>
-  </thead>
+    </thead>
     {%for us in users %}
 
-  <tbody>
-    <tr>
-      <th scope="row">{{loop.index}}</th>
-      <td>{{us.first_name}}</td>
-      <td>{{us.email}}</td>
-      <td>gfdgfdgfdg</td>
-      <td>
-        <button type="button" class="btn btn-dark" >Dark</button>
-      </td>
-    </tr>
-  </tbody>
+
+    <tbody>
+    <form method="POST">
+        <tr>
+            <input type="hidden" name="user_id" value={{us['user'].id}}>
+            <th scope="row">{{loop.index}}</th>
+            <td>{{us['user'].first_name}}</td>
+            <td>{{us['user'].email}}</td>
+            <td>{{us['org'].name}}</td>
+            <td>
+                <button type="submit" value="Submit" class="btn btn-dark">הפסק התנדבות זו</button>
+            </td>
+        </tr>
+    </form>
+
+    </tbody>
     {% endfor %}
 </table>
-
 
 
 {% endblock %}
