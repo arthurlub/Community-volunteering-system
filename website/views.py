@@ -1,11 +1,10 @@
 from __future__ import print_function
-from flask import Blueprint, render_template, request, flash, jsonify
+from flask import jsonify
 from flask_login import login_required, current_user
 from .models import Note, VolunteerGroup, Organization, User
-from sqlalchemy import update
+from flask import Blueprint, render_template, request, flash, redirect, url_for
 from . import db
 import json
-import os.path
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
@@ -74,18 +73,21 @@ def company_registration():
 
 @views.route('/', methods=['GET', 'POST'])
 def home():
-    org_list = []
-    org = Organization.query.all()
-    for ob in org:
-        org_list.append(ob)
-    if request.method == 'POST':
-        org_id = request.form.get('org_id')
-        value = User.query.filter_by(id=current_user.id).first()
-        value.organization_id = int(org_id)
-        db.session.commit()
-        flash("Done!", category='success')
+    if current_user.is_authenticated:
+        org_list = []
+        org = Organization.query.all()
+        for ob in org:
+            org_list.append(ob)
+        if request.method == 'POST':
+            org_id = request.form.get('org_id')
+            value = User.query.filter_by(id=current_user.id).first()
+            value.organization_id = int(org_id)
+            db.session.commit()
+            flash("Done!", category='success')
 
-    return render_template("volunteering-catalog.html", org=org_list, user=current_user)
+        return render_template("volunteering-catalog.html", org=org_list, user=current_user)
+    else:
+        return redirect(url_for('auth.login'))
 
 
 # Admin pages
