@@ -16,7 +16,7 @@ def add_note():
         db.session.add(new_note)
         db.session.commit()
         flash('Note added, please refresh the page!', category='success')
-
+        return jsonify({})
 
 def delete_note():
     note = json.loads(request.data)
