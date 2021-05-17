@@ -1,56 +1,56 @@
 {% extends "base.html" %}
 {% block title %}Login{% endblock %}
-{% block content %}
-  <h3 align="center">דף התנדבות אישי</h3>
 
-    <p>User name:  {{user.first_name}}</p>
-<br>
+{% block css %}
+<link rel="stylesheet" href="/static/Personal-page.css">
+{% endblock %}
+
+{% block content %}
+<h3 align="center">דף התנדבות אישי</h3>
+
+<div dir="rtl" style="text-align:right; border: lightgray solid 5px; width: 90%; margin: auto;">
+
+
+    <p>{{user.first_name}} :שם משתמש </p>
+    <br>
 
     <p>Email Address: {{user.email}} </p>
 
-
-<table class="table table-borderless w-50 p-3">
-  <thead>
-    <tr>
-      <td scope="col">Organization:</td>
-      <td scope="col">{{org.name}}</td>
-      <td scope="col">
-        <button type="button" class="close" onClick="stopVol({{user.id }})">X</button>
-      </td>
-    </tr>
-  </thead>
+    <div style="width: 50%">
+        <table class="table table-borderless w-50 p-3 ">
+            <thead>
+            <tr>
+                <td scope="col">ארגון התנדבות:</td>
+                <td scope="col">{{org.name}}
+                    <button type="button" class="close" onClick="stopVol({{user.id }})">X</button>
+                </td>
+            </tr>
+            </thead>
+    </div>
+</div>
 </table>
 
-
-
-
-
 <form method="POST">
-  <br/><br/><br/>
-<div class="rating_scale">
-  <label>
-    <input type="radio" value=1 name="rating"/><span>1</span>
-  </label>
-  <label>
-    <input type="radio" value=2 name="rating"/><span>2</span>
-  </label>
-  <label>
-    <input type="radio" value=3 name="rating"/><span>3</span>
-  </label>
-  <label>
-    <input type="radio" value=4 name="rating"/><span>4</span>
-  </label>
-  <label>
-    <input type="radio" value=5 name="rating"/><span>5</span>
-  </label>
-</div>
+    <br/><br/><br/>
+    <div class="rate">
+        <input type="radio" id="star5" name="rating" value="5"/>
+        <label for="star5" title="text">5 stars</label>
+        <input type="radio" id="star4" name="rating" value="4"/>
+        <label for="star4" title="text">4 stars</label>
+        <input type="radio" id="star3" name="rating" value="3"/>
+        <label for="star3" title="text">3 stars</label>
+        <input type="radio" id="star2" name="rating" value="2"/>
+        <label for="star2" title="text">2 stars</label>
+        <input type="radio" id="star1" name="rating" value="1"/>
+        <label for="star1" title="text">1 star</label>
+    </div>
 
-  <br />
-  <button type="submit" name = "submit_but" class="btn btn-primary">שלח דירוג</button>
+    <br>
+    <br/>
+    <button type="submit" name="submit_but" class="btn btn-primary">שלח דירוג</button>
 </form>
-  <br/><br/><br/>
 
-
+</div>
 
 
 {% endblock %}

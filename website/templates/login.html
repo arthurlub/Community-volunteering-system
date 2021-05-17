@@ -1,29 +1,36 @@
 {% extends "base.html" %}
 {% block title %}Login{% endblock %}
 {% block content %}
-<form method="POST">
-  <h3 align="center">Login</h3>
-  <div class="form-group">
-    <label for="email">Email Address</label>
-    <input
-      type="email"
-      class="form-control"
-      id="email"
-      name="email"
-      placeholder="Enter email"
-    />
-  </div>
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input
-      type="password"
-      class="form-control"
-      id="password"
-      name="password"
-      placeholder="Enter password"
-    />
-  </div>
-  <br />
-  <button type="submit" class="btn btn-primary">Login</button>
-</form>
+
+<h3 align="center">התחברות למערכת</h3>
+
+<div style=" margin: auto;  width: 50%;  border: 3px solid lightgray;  padding: 10px;">
+    <form method="POST" dir="rtl" style="text-align:right">
+        <div class="form-group">
+            <label for="email">כתובת Email:</label>
+            <input dir="ltr"
+                   type="email"
+                   class="form-control"
+                   id="email"
+                   name="email"
+                   placeholder="Email.."
+            />
+        </div>
+        <div class="form-group">
+            <label for="password">סיסמה</label>
+            <input dir="ltr"
+                   type="password"
+                   class="form-control"
+                   id="password"
+                   name="password"
+                   placeholder="password.."
+            />
+        </div>
+        <br/>
+        <button type="submit" class="btn btn-primary">התחבר</button>
+    </form>
+
+</div>
+
 {% endblock %}
+

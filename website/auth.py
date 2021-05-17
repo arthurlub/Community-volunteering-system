@@ -17,13 +17,13 @@ def login():
         user = User.query.filter_by(email=email).first()
         if user:
             if check_password_hash(user.password, password):
-                flash('Logged in successfully!', category='success')
+                flash('ברוכים הבאים!', category='success')
                 login_user(user, remember=True)
                 return redirect(url_for('views.home'))
             else:
-                flash('Incorrect password, try again.', category='error')
+                flash('הסיסמה שגויה. נסה שנית.', category='error')
         else:
-            flash('Email does not exist.', category='error')
+            flash('הEmail לא קיים. נסה שנית.', category='error')
 
     return render_template("login.html", user=current_user)
 
@@ -42,21 +42,22 @@ def sign_up():
         first_name = request.form.get('firstName')
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
+        area = request.form.get('area')
 
         user = User.query.filter_by(email=email).first()
         if user:
-            flash('Email already exists.', category='error')
+            flash('הEmail כבר קיים במערכת.', category='error')
         elif len(email) < 4:
-            flash('Email must be greater than 3 characters.', category='error')
+            flash('הEmail חייב להכיל יותר מ3 ספרות.', category='error')
         elif len(first_name) < 2:
-            flash('First name must be greater than 1 character.', category='error')
+            flash('השם הפרטי חייב להכיל לפחות שתי אותיות.', category='error')
         elif password1 != password2:
-            flash('Passwords don\'t match.', category='error')
+            flash('הסיסמה אינה נכונה.', category='error')
         elif len(password1) < 7:
-            flash('Password must be at least 7 characters.', category='error')
+            flash('הסיסמה חייבת להכיל לפחות 7 ספרות.', category='error')
         else:
             new_user = User(email=email, first_name=first_name, password=generate_password_hash(
-                password1, method='sha256'))
+                password1, method='sha256'),area=area)
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)

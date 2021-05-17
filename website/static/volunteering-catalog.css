@@ -4,19 +4,14 @@ body{
 
 }
 
+h3 {
+    dir : "rtl";
+}
+
+
 .oranization-list-container{
 
     position: relative;
-}
-
-h1{
-    position:absolute;
-    top: 0px;
-    margin-right: 50px;
-    width: 100%;
-    font-size: 40px;
-    font-family: 'Rubik', sans-serif;
-    color: rgb(168, 75, 148);
 }
 
 
@@ -340,12 +335,3 @@ h1{
         height: 75%;
     }
 }
-
-@media screen and (max-width: 580px){
-    .modal-content{
-        margin: 20% auto;
-        width: 90%;
-        height: 80%;
-    }
-}
-

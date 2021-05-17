@@ -2,16 +2,17 @@
 {% block title %}Login{% endblock %}
 {% block content %}
 <h3 align="center">דף מנהל</h3>
-<br/><br/><br/>
+<br/>
 
-<table class="table">
+<h5 style="text-align:right" dir="rtl"> פרטי המשתמשים הרשומים להתנדבויות </h5>
+<table style="text-align:right" dir="rtl" class="table">
     <thead class="thead-dark">
     <tr>
         <th scope="col">#</th>
-        <th scope="col">Name</th>
+        <th scope="col">שם</th>
         <th scope="col">Email</th>
-        <th scope="col">Organization</th>
-        <th scope="col">stop volunteering</th>
+        <th scope="col">ארגון התנדבות</th>
+        <th scope="col"></th>
     </tr>
     </thead>
     {%for us in users %}
@@ -26,7 +27,7 @@
             <td>{{us['user'].email}}</td>
             <td>{{us['org'].name}}</td>
             <td>
-                <button type="submit" value="Submit" class="btn btn-dark">הפסק התנדבות זו</button>
+                <button type="submit" value="Submit" class="btn btn-warning">הפסק התנדבות זו</button>
             </td>
         </tr>
     </form>

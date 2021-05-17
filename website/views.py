@@ -1,10 +1,8 @@
 from __future__ import print_function
-from flask import jsonify
 from flask_login import login_required, current_user
 from .models import Note, VolunteerGroup, Organization, User
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from . import db
-import json
 from . import be
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
@@ -95,5 +93,7 @@ def stop_vol():
 # personal-recommendations
 @views.route('/personal-recommendations', methods=['GET', 'POST'])
 def personal_recommendations():
-    org = be.organization_rating()
-    return render_template("personal-recommendations.html", user=current_user, org=org)
+    org_list = Organization.query.filter_by(area=current_user.area)
+    temp_list = Organization.query.filter_by(area="כל הארץ")
+    org_list = [*org_list, *temp_list]
+    return render_template("personal-recommendations.html", user=current_user, org = org_list)

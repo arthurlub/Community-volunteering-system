@@ -1,59 +1,64 @@
 {% extends "base.html" %}
 {% block title %}Sign Up{% endblock %}
 {% block content %}
-<form method="POST">
-  <h3 align="center">Sign Up</h3>
-  <div class="form-group">
-    <label for="email">Email Address</label>
-    <input
-      type="email"
-      class="form-control"
-      id="email"
-      name="email"
-      placeholder="Enter email"
-    />
-  </div>
-  <div class="form-group">
-    <label for="firstName">First Name</label>
-    <input
-      type="text"
-      class="form-control"
-      id="firstName"
-      name="firstName"
-      placeholder="Enter first name"
-    />
-  </div>
-  <div class="form-group">
-    <label for="password1">Password</label>
-    <input
-      type="password"
-      class="form-control"
-      id="password1"
-      name="password1"
-      placeholder="Enter password"
-    />
-  </div>
-  <div class="form-group">
-    <label for="password2">Password (Confirm)</label>
-    <input
-      type="password"
-      class="form-control"
-      id="password2"
-      name="password2"
-      placeholder="Confirm password"
-    />
-  </div>
 
-    <div class="form-group">
-    <label>בחר אזור מגורים</label>
-    <select class="form-control" id="exampleFormControlSelect1">
-      <option>צפון</option>
-      <option>מרכז</option>
-      <option>דרום</option>
-    </select>
-  </div>
+<h3 align="center">הרשמה למערכת</h3>
+<div style=" margin: auto;  width: 50%;  border: 3px solid lightgray;  padding: 10px;">
+    <form method="POST" dir="rtl" style="text-align:right">
 
-  <br />
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+        <div class="form-group">
+            <label for="email">כתובת Email</label>
+            <input dir="ltr"
+                   type="email"
+                   class="form-control"
+                   id="email"
+                   name="email"
+                   placeholder="Enter email"
+            />
+        </div>
+
+        <div class="form-group">
+            <label for="firstName">שם פרטי</label>
+            <input dir="ltr"
+                   type="text"
+                   class="form-control"
+                   id="firstName"
+                   name="firstName"
+                   placeholder="Enter first name"
+            />
+        </div>
+        <div class="form-group">
+            <label for="password1">סיסמה</label>
+            <input dir="ltr"
+                   type="password"
+                   class="form-control"
+                   id="password1"
+                   name="password1"
+                   placeholder="Enter password"
+            />
+        </div>
+        <div class="form-group">
+            <label for="password2">אימות סיסמה</label>
+            <input dir="ltr"
+                   type="password"
+                   class="form-control"
+                   id="password2"
+                   name="password2"
+                   placeholder="Confirm password"
+            />
+        </div>
+
+        <div class="form-group">
+            <label>בחר אזור מגורים</label>
+            <select class="form-control" id="area" name="area">
+                <option>צפון</option>
+                <option>מרכז</option>
+                <option>דרום</option>
+            </select>
+        </div>
+
+        <br/>
+        <button type="submit" class="btn btn-primary">הרשם</button>
+    </form>
+</div>
 {% endblock %}

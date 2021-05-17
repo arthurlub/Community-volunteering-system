@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="he">
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -11,27 +11,18 @@
             integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
             crossorigin="anonymous"
     />
-    <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-            crossorigin="anonymous"
-    />
 
-    <!--עיצוב לעמוד קטלוג ההתנדבויות-->
-    <link rel="stylesheet" href="/static/volunteering-catalog.css">
+<!-- unique css file for each html page -->
+{% block css %} {% endblock %}
 
 
-    <!--עיצוב לעמוד הרשמה להתנדבויות-->
-    <link rel="stylesheet" href="/static/company-registration.css">
-
-
-    <!-- השורה למטה מאפשרת לתת שם שונה לכל עמוד HTML באמצעות הורשה של דף base.html ושימוש בשפת JINGA-->
+    <!-- השורה למטה מאפשרת לתת שם שונה לכל עמוד HTML באמצעות הורשה של דף base.html ושימוש בשפת JINJA-->
     <title>{% block title %}Home{% endblock %}</title>
 </head>
 
 
-<body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<body >
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" dir="rtl">
     <button
             class="navbar-toggler"
             type="button"
@@ -49,7 +40,7 @@
                 <a class="nav-item nav-link" id="Admin" href="/Admin">דף מנהל</a>
                 {% else %}
                 <a class="nav-item nav-link" id="Personal-page" href="/personal-page">דף אישי</a>
-                <a class="nav-item nav-link" id="personal-recommendations" href="/personal-recommendations">המלצות התנדבות</a>
+                <a class="nav-item nav-link" id="personal-recommendations" href="/personal-recommendations">המלצות אישיות להתנדבות</a>
                 {% endif %}
             <a class="nav-item nav-link" id="logout" href="/logout">התנתקות</a>
             {% else %}
@@ -64,14 +55,14 @@
 {% with messages = get_flashed_messages(with_categories=true) %} {% if
 messages %} {% for category, message in messages %} {% if category ==
 'error' %}
-<div class="alert alert-danger alter-dismissable fade show" role="alert">
+<div class="alert alert-danger alter-dismissable fade show" role="alert" dir="rtl" style="text-align:right" >
     {{ message }}
     <button type="button" class="close" data-dismiss="alert">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
 {% else %}
-<div class="alert alert-success alter-dismissable fade show" role="alert">
+<div class="alert alert-success alter-dismissable fade show" role="alert" dir="rtl" style="text-align:right">
     {{ message }}
     <button type="button" class="close" data-dismiss="alert">
         <span aria-hidden="true">&times;</span>
@@ -81,9 +72,8 @@ messages %} {% for category, message in messages %} {% if category ==
 {% endif %} {% endfor %} {% endif %} {% endwith %}
 
 
-<!-- HTML content -->
-
-<div class="container">{% block content %} {% endblock %}</div>
+<!-- HTML body content -->
+{% block content %} {% endblock %}
 
 
 <!-- Jquery cdn -->
@@ -114,20 +104,6 @@ messages %} {% for category, message in messages %} {% if category ==
 <script
         type="text/javascript"
         src="{{ url_for('static', filename='index.js') }}"
-></script>
-
-<!-- ------------------------ css styles for my html pages---------------------------- -->
-
-<!-- css style for volunteering-catalog.html-->
-<script
-        type="text/javascript"
-        src="{{ url_for('static', filename='volunteering-catalog.css') }}"
-></script>
-
-<!-- css style for company-registration.html-->
-<script
-        type="text/javascript"
-        src="{{ url_for('static', filename='company-registration.css') }}"
 ></script>
 
 

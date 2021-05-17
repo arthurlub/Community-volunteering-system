@@ -1,8 +1,8 @@
 from __future__ import print_function
 from flask import jsonify
-from flask_login import login_required, current_user
-from .models import Note, VolunteerGroup, Organization, User
-from flask import Blueprint, render_template, request, flash, redirect, url_for
+from flask_login import current_user
+from .models import Note, Organization, User
+from flask import request, flash
 from . import db
 import json
 
@@ -17,6 +17,7 @@ def add_note():
         db.session.commit()
         flash('Note added, please refresh the page!', category='success')
         return jsonify({})
+
 
 def delete_note():
     note = json.loads(request.data)
@@ -76,4 +77,5 @@ def stop_volunteering():
         flash(f" {user.first_name} הפסקת את ההתנדבות למשתמש ", category='success')
     else:
         flash("ההרשמה להתנדבות בוטלה בהצלחה ", category='success')
+
 
