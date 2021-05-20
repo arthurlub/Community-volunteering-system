@@ -80,7 +80,7 @@ def admin_page():
 
 
 # personal page
-@views.route('/Personal-page', methods=['GET', 'POST'])
+@views.route('/personal-page', methods=['GET', 'POST'])
 def personalpage():
     org = be.organization_rating()
     return render_template("personal-page.html", user=current_user, org=org)
