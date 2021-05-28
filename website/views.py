@@ -1,5 +1,6 @@
 from __future__ import print_function
 from flask_login import login_required, current_user
+
 from .models import Note, VolunteerGroup, Organization, User
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from . import db
@@ -92,10 +93,16 @@ def stop_vol():
 def personal_recommendations():
     org_list = Organization.query.filter_by(area=current_user.area)
     temp_list = Organization.query.filter_by(area="כל הארץ")
+    order_org = Organization.query.order_by(Organization.rating.desc())
+    top_five = []
+    i = 0
+    while i < 5:
+        top_five.append(order_org[i])
+        i += 1
     org_list = [*org_list, *temp_list]
     if request.method == 'POST':
         be.volunteer_registration()
-    return render_template("personal-recommendations.html", user=current_user, org=org_list)
+    return render_template("personal-recommendations.html", user=current_user, org=org_list, top_five=top_five)
 
 
 # Company pages
@@ -113,4 +120,4 @@ def company_page():
                 users_organization_info.append(temp_dict)
         if request.method == 'POST':
             be.stop_volunteering()
-        return render_template("company-page.html", users=users_organization_info, user=current_user , org_name=org_name)
+        return render_template("company-page.html", users=users_organization_info, user=current_user, org_name=org_name)

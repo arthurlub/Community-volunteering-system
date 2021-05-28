@@ -16,16 +16,40 @@
     {% for ob in org %}
     <div class="card" style="width: 18rem; display: inline-flex; border: black solid 2px; text-align:right" dir="rtl">
         <form method="POST">
-        <img class="card-img-top" src="{{ob.pic}}" style="width: 250px; height: 250px">
-        <div class="card-body">
-            <h3 class="card-title">{{ob.name}}</h3>
-            <h6 class="card-title">{{ob.area}} </h6>
-            <p class="card-text" style="width: 250px; height: 80px"> {{ob.description}}</p>
-           <button class="btn btn-info" type="submit" value="Submit"> רשמו אותי</button>
-        </div>
-         </form>
+            <img class="card-img-top" src="{{ob.pic}}" style="width: 250px; height: 250px">
+            <div class="card-body">
+                <h3 class="card-title">{{ob.name}}</h3>
+                <h6 class="card-title">{{ob.area}} </h6>
+                <p class="card-text" style="width: 250px; height: 80px"> {{ob.description}}</p>
+                <button class="btn btn-info" type="submit" value="Submit"> רשמו אותי</button>
+            </div>
+        </form>
+    </div>
+    {% endfor %}
+
+    <h5 dir="rtl" style="text-align:right">
+        TOP 5 - חמשת הארוגנים בעלי הדירוג הגבוה ביותר באתר
+    </h5>
+
+
+</div>
+
+
+
+<div style="width: 70%; margin: auto;">
+    {% for ob in top_five %}
+        <div class="card" style="width: 18rem; display: inline-flex; border: black solid 2px; text-align:right" dir="rtl">
+        <form method="POST">
+            <img class="card-img-top" src="{{ob.pic}}" style="width: 250px; height: 250px">
+            <div class="card-body">
+                 <input type="hidden" name="org_id" value={{ob.id}}><br><br>
+                <h3 class="card-title">{{ob.name}}</h3>
+                <h6 class="card-title">{{ob.description}}</h6>
+                <p class="card-text" style="width: 250px; height: 80px"> {{ob.rating}}</p>
+                <button class="btn btn-info" type="submit" value="Submit"> רשמו אותי</button>
+            </div>
+        </form>
     </div>
     {% endfor %}
 </div>
-
 {% endblock %}
