@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="/static/volunteering-catalog.css">
+{% endblock %}
+
+{% block content %}
+<h3 align="center">דף המלצות התנדבות</h3>
+
+<h5 dir="rtl" style="text-align:right">
+    בעמוד זה מוצגות המלצות אישיות להתנדבות על פי מקום המגורים שלך
+</h5>
+
+<div style="width: 70%; margin: auto;">
+    {% for ob in org %}
+    <div class="card" style="width: 18rem; display: inline-flex; border: black solid 2px; text-align:right" dir="rtl">
+        <form method="POST">
+        <img class="card-img-top" src="{{ob.pic}}" style="width: 250px; height: 250px">
+        <div class="card-body">
+            <h3 class="card-title">{{ob.name}}</h3>
+            <h6 class="card-title">{{ob.area}} </h6>
+            <p class="card-text" style="width: 250px; height: 80px"> {{ob.description}}</p>
+           <button class="btn btn-info" type="submit" value="Submit"> רשמו אותי</button>
+        </div>
+         </form>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

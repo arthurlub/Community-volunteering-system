@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}ניהול חברה{% endblock %}
+{% block content %}
+<h3 align="center">ניהול חברה - {{org_name}}</h3>
+<br/>
+
+<h5 style="text-align:right" dir="rtl"> פרטי המשתמשים הרשומים להתנדבויות </h5>
+<table style="text-align:right" dir="rtl" class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">שם</th>
+        <th scope="col">Email</th>
+        <th scope="col">ארגון התנדבות</th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+    {%for us in users %}
+
+
+    <tbody>
+    <form method="POST">
+        <tr>
+            <input type="hidden" name="user_id" value={{us['user'].id}}>
+            <th scope="row">{{loop.index}}</th>
+            <td>{{us['user'].first_name}}</td>
+            <td>{{us['user'].email}}</td>
+            <td>{{us['org'].name}}</td>
+            <td>
+                <button type="submit" value="Submit" class="btn btn-warning">הפסק התנדבות זו</button>
+            </td>
+        </tr>
+    </form>
+
+    </tbody>
+    {% endfor %}
+</table>
+
+
+{% endblock %}

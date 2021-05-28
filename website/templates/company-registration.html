@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}company registration{% endblock %}
+
+{% block content %}
+        <div class = "regform" > <h1>רישום ארגונים חדשים</h1></div>
+        <div class= "main">
+            <form method="POST">
+                <div id= "contact-name">
+                    <h2 class= "name"> פרטים אישיים </h2>
+                    <label class= "firstlabel">  שם אישר הקשר </label>
+                    <input class= "firstname" type = "text" name= "first_name" id= "first_name"><br>
+                    <label class= "companylabel"> שם הארגון </label>
+                    <input class= "company" type= "text" name= "company" id= "company">
+                </div>
+
+                <h2 class= "name"> פרטי התקשרות </h2>
+                <label class= "emailabel"> Emaill  </label>
+                <input class= "email" typr= "text" name = "email" id = "email">
+                <label class= "numberlabel"> מספר טלפון </label>
+                <input class= "number" type="text" name="phone" id="phone">
+
+                <h2 class= "name"> תיאור הארגון</h2>
+                <textarea  class="detsails" name="desc" id="desc" placeholder="תאר בקצרה את מהות הארגון ופעילותיה"></textarea>
+
+                <button type="submit"> הרשמה </button>
+
+            </form>
+        </div>
+
+{% endblock %}

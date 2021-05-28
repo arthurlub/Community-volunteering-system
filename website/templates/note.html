@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<h1 align="center">פורום</h1>
+<br>
+<h3 align="center">פורום זה לרשותכם לצורך התייעצות ויצירת קבוצות התנדבות</h3>
+<br>
+<ul class="list-group list-group-flush" id="notes" dir="rtl" style="text-align:right" >
+    {% for note in notes %}
+    <li class="list-group-item" dir="rtl" style="text-align:right">
+        מאת: {{note['user_name']}} <br>
+        {{note['note'].date}} <br>
+        תוכן:
+        {{ note['note'].data }}
+        <button type="button" class="close" onClick="deleteNote({{ note['note'].id }})">
+            {% if (user.id == note['note'].user_id) or (user.id == 0) %}
+            <span aria-hidden="true">&times;</span>
+            {% endif %}
+        </button>
+    </li>
+    {% endfor %}
+</ul>
+<form method="POST">
+    <textarea name="note" id="note" class="form-control"></textarea>
+    <br/>
+    <div align="center">
+        <button type="submit" class="btn btn-primary">שליחת הודעה</button>
+    </div>
+</form>
+{% endblock %}
