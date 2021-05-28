@@ -10,6 +10,7 @@ from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
+from flask import Blueprint, render_template, request, flash, redirect, url_for
 
 
 def add_note():
@@ -21,7 +22,7 @@ def add_note():
         db.session.add(new_note)
         db.session.commit()
         flash('Note added, please refresh the page!', category='success')
-        return jsonify({})
+        return redirect(url_for("views.note"))
 
 
 def delete_note():

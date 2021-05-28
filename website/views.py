@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 
 from .models import Note, VolunteerGroup, Organization, User
 from flask import Blueprint, render_template, request, flash, redirect, url_for
+
 from . import db
 from . import be
 
@@ -20,6 +21,7 @@ def note():
         notes_list.append(temp_dict)
     if request.method == 'POST':
         be.add_note()
+        return redirect(url_for("views.note"))
     return render_template("note.html", notes=notes_list, user=current_user)
 
 
@@ -63,7 +65,7 @@ def home():
 # Admin pages
 @views.route('/Admin', methods=['GET', 'POST'])
 def admin_page():
-    if current_user.id == 0:
+    if current_user.type == 0:
         users_list = User.query.all()
         users_organization_info = []
         for user in users_list:
