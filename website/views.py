@@ -116,7 +116,7 @@ def company_page():
         org_ob = Organization.query.filter_by(id=current_user.organization_id).first()
         org_name = org_ob.name
         for user in users_list:
-            if user.id != 0 and user.organization_id == current_user.organization_id:
+            if user.id == 1 and user.organization_id == current_user.organization_id:
                 org = Organization.query.filter_by(id=user.organization_id).first()
                 temp_dict = {'user': user, 'org': org}
                 users_organization_info.append(temp_dict)
