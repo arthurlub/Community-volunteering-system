@@ -26,7 +26,7 @@ class User(db.Model, UserMixin):
     notes = db.relationship('Note')
     organization_id = db.Column(db.Integer, db.ForeignKey('organization.id'))
     area = db.Column(db.String(150))
-    type = db.Column(db.Integer)
+    type = db.Column(db.Integer, default=1)
 
 
 class Organization(db.Model):
@@ -39,6 +39,3 @@ class Organization(db.Model):
     votersNumber = db.Column(db.Integer)
     pic = db.Column(db.String(150))
     raters = db.Column(db.String)
-
-
-
