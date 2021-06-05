@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="google-site-verification" content="22v3iNe5_2NHfDSPhWsYvCVTwip5V3JDU9Orf-g0z28"/>
 
     <!-- bootstrap cdn -->
     <link
@@ -34,18 +35,19 @@
     <div class="collapse navbar-collapse" id="navbar">
         <div class="navbar-nav">
             {% if user.is_authenticated %}
-                {% if user.type == 1%}
-                <a class="nav-item nav-link" id="home" href="/">דף הבית</a>
-                <a class="nav-item nav-link" id="personal-recommendations" href="/personal-recommendations">המלצות אישיות  להתנדבות</a>
-                <a class="nav-item nav-link" id="volunteering-catalog" href="/notes">פורום מתנדבים</a>
-                <a class="nav-item nav-link" id="Personal-page" href="/personal-page">דף אישי</a>
-                {% elif user.type == 0 %}
-                <a class="nav-item nav-link" id="Admin" href="/Admin">דף מנהל</a>
-                <a class="nav-item nav-link" id="volunteering-catalog2" href="/notes">פורום מתנדבים</a>
-                {% elif user.type == 2%}
-                <a class="nav-item nav-link" id="company-page" href="/company-page">דף החברה</a>
-                <a class="nav-item nav-link" id="volunteering-catalog3" href="/notes">פורום מתנדבים</a>
-                {% endif %}
+            {% if user.type == 1%}
+            <a class="nav-item nav-link" id="home" href="/">דף הבית</a>
+            <a class="nav-item nav-link" id="personal-recommendations" href="/personal-recommendations">המלצות אישיות
+                להתנדבות</a>
+            <a class="nav-item nav-link" id="volunteering-catalog" href="/notes">פורום מתנדבים</a>
+            <a class="nav-item nav-link" id="Personal-page" href="/personal-page">דף אישי</a>
+            {% elif user.type == 0 %}
+            <a class="nav-item nav-link" id="Admin" href="/Admin">דף מנהל</a>
+            <a class="nav-item nav-link" id="volunteering-catalog2" href="/notes">פורום מתנדבים</a>
+            {% elif user.type == 2%}
+            <a class="nav-item nav-link" id="company-page" href="/company-page">דף החברה</a>
+            <a class="nav-item nav-link" id="volunteering-catalog3" href="/notes">פורום מתנדבים</a>
+            {% endif %}
             <a class="nav-item nav-link" id="logout" href="/logout">התנתקות</a>
             {% else %}
             <a class="nav-item nav-link" id="login" href="/log-in">התחברות</a>
