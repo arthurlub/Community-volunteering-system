@@ -2,7 +2,6 @@ from __future__ import print_function
 from flask import jsonify
 from flask_login import current_user
 from .models import Note, Organization, User
-from flask import request, flash
 from . import db
 import os
 import json
@@ -10,9 +9,8 @@ from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
-from flask import Blueprint, render_template, request, flash, redirect, url_for
-
-
+from flask import request, flash, redirect, url_for
+import email_sender
 
 
 def add_note():
@@ -46,9 +44,16 @@ def volunteer_registration():
         org_id = request.form.get('org_id')
         value = User.query.filter_by(id=current_user.id).first()
         value.organization_id = int(org_id)
+
+        # send_email()
+        subject = "תודה שנרשמתם להתנדבות ב + פרמטר שם חברה"
+        content = "צרו קשר עם מנהל ההתנדבות + אימייל שם חברה"
+        email_sender.send_email(value.email, subject, content)
+
         db.session.commit()
         flash("Done!", category='success')
-        google_calender()
+       # google_calender()
+
     elif current_user.id == 0:
         flash("אתה המנהל, אתה לא יכול להרשם להתנדבות", category='error')
     else:
@@ -110,8 +115,13 @@ def google_calender():
     # with open('token.json', 'w') as token:
     #     token.write(creds.to_json())
 
+    # admin@gmail.com
+
     service = build('calendar', 'v3', credentials=creds)
     # email = request.form.get('email')
+
+    # send_email (subject, body, recepient)
+
     event = {
         'summary': 'Google I/O 2015',
         'location': '800 Howard St., San Francisco, CA 94103',
