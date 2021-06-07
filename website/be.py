@@ -13,6 +13,8 @@ from google.oauth2.credentials import Credentials
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 
 
+
+
 def add_note():
     note = request.form.get('note')
     if len(note) < 1:
@@ -91,6 +93,7 @@ def stop_volunteering():
 
 
 def google_calender():
+    # API-GOOGLE
     SCOPES = ['https://www.googleapis.com/auth/calendar']
     creds = None
     if os.path.exists('token.json'):
@@ -102,12 +105,10 @@ def google_calender():
         else:
             flow = InstalledAppFlow.from_client_secrets_file(
                 'credentials.json', SCOPES)
-
-            creds = flow.run_local_server()
-
-        # Save the credentials for the next run
-        with open('token.json', 'w') as token:
-            token.write(creds.to_json())
+            creds = flow.run_local_server(port=8888)
+    # Save the credentials for the next run
+    # with open('token.json', 'w') as token:
+    #     token.write(creds.to_json())
 
     service = build('calendar', 'v3', credentials=creds)
     # email = request.form.get('email')
@@ -137,5 +138,4 @@ def google_calender():
             ],
         },
     }
-
     event = service.events().insert(calendarId='primary', body=event).execute()
