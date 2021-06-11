@@ -1,18 +1,27 @@
 {% extends "base.html" %}
-{% block title %}Login{% endblock %}
+{% block title %}דף המלצות אישיות{% endblock %}
 
 {% block css %}
 <link rel="stylesheet" href="/static/volunteering-catalog.css">
 {% endblock %}
 
 {% block content %}
-<h3 align="center">דף המלצות התנדבות</h3>
+<h2 align="center">דף המלצות התנדבות</h2>
 
-<h5 dir="rtl" style="text-align:right">
-    בעמוד זה מוצגות המלצות אישיות להתנדבות על פי מקום המגורים שלך
+<h5 dir="rtl" align="center">
+    בעמוד זה מוצגות המלצות אישיות להתנדבות
 </h5>
 
+<br>
+<br>
+<br>
+
 <div style="width: 70%; margin: auto;">
+
+        <h4 dir="rtl" style="text-align:center">
+        המלצות התנדבות לפי מיקום גאוגרפי
+    </h4>
+
     {% for ob in org %}
     <div class="card" style="width: 18rem; display: inline-flex; border: black solid 2px; text-align:right" dir="rtl">
         <form method="POST">
@@ -27,9 +36,13 @@
     </div>
     {% endfor %}
 
-    <h5 dir="rtl" style="text-align:right">
+    <br>
+<br>
+    <br>
+<br>
+    <h4 dir="rtl" style="text-align:center">
         TOP 5 - חמשת הארוגנים בעלי הדירוג הגבוה ביותר באתר
-    </h5>
+    </h4>
 
 
 </div>

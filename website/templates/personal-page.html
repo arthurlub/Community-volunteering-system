@@ -9,7 +9,12 @@
 {% block content %}
 <h3 align="center">דף התנדבות אישי</h3>
 
+
 <div id="container1">
+
+    <h5 align="right">בעמוד זה ניתן לצפות בפרטי המשתמש ולבטל הרשמה להתנדבות</h5>
+<br>
+<br>
 
     <p> שם משתמש: {{user.first_name}}</p>
     <br>
@@ -20,12 +25,23 @@
 
     <div id="container2">
 
-        <p>ארגון התנדבות: {{org.name}}
-            <button type="button" class="close" onClick="stopVol({{user.id }})">X</button>
+        <p>
+            :ארגון התנדבות
+            {{org.name}}
+        <p>
+            <button type="button" class="btn btn-danger" onClick="stopVol({{user.id }})">לחץ למחיקת הרשמה להתנדבות
+                בארגון
+            </button>
+        </p>
         </p>
 
+        <br>
+        <br>
+
         <form method="POST">
-            <br/><br/><br/>
+            <a>
+                :דירוג ארגון ההתנדבות
+            </a>
             <div class="rate">
                 <input type="radio" id="star5" name="rating" value="5"/>
                 <label for="star5" title="text">5 stars</label>
@@ -43,6 +59,8 @@
             <br/>
             <button type="submit" name="submit_but" class="btn btn-primary">שלח דירוג</button>
         </form>
+
+
     </div>
 </div>
 

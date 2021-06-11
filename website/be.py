@@ -45,14 +45,14 @@ def volunteer_registration():
         value = User.query.filter_by(id=current_user.id).first()
         value.organization_id = int(org_id)
 
-        # send_email()
-        subject = "תודה שנרשמתם להתנדבות ב + פרמטר שם חברה"
-        content = "צרו קשר עם מנהל ההתנדבות + אימייל שם חברה"
-        email_sender.send_email(value.email, subject, content)
+        # send_email function
+       # subject = "תודה שנרשמתם להתנדבות "
+       # content = "ניתן ליצור קשר עם מנהל ההתנדבות באמצעות שליחת הודעה במייל זה. "
+       # email_sender.send_email(value.email, subject, content)
 
         db.session.commit()
         flash("Done!", category='success')
-       # google_calender()
+        google_calender()
 
     elif current_user.id == 0:
         flash("אתה המנהל, אתה לא יכול להרשם להתנדבות", category='error')
@@ -123,22 +123,22 @@ def google_calender():
     # send_email (subject, body, recepient)
 
     event = {
-        'summary': 'Google I/O 2015',
+        'summary': 'לא לשכוח - נקבעה התנדבות',
         'location': '800 Howard St., San Francisco, CA 94103',
-        'description': 'A chance to hear more about Google\'s developer products.',
+        'description': 'התנדבות בקהילה',
         'start': {
-            'dateTime': '2015-05-28T09:00:00-07:00',
+            'dateTime': '2021-05-28T09:00:00-07:00',
             'timeZone': 'America/Los_Angeles',
         },
         'end': {
-            'dateTime': '2015-05-28T17:00:00-07:00',
+            'dateTime': '2021-05-28T17:00:00-07:00',
             'timeZone': 'America/Los_Angeles',
         },
         'recurrence': [
             'RRULE:FREQ=DAILY;COUNT=2'
         ],
         'attendees': [
-            {'email': 'noamishraki2@gmail.com'}
+            {'email': 'arthur931@gmail.com'}
         ],
         'reminders': {
             'useDefault': False,

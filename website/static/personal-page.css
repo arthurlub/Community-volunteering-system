@@ -1,3 +1,7 @@
+body {
+    background-image: url("company registration/‏‏background5.jpg");
+}
+
 p {
     text-align: right;
     dir: rtl;
@@ -9,19 +13,20 @@ a {
     direction: ltr;
 }
 
+
 #container1 {
     direction: rtl;
     text-align: right;
-    border: cadetblue solid 5px;
     width: 90%;
     margin: auto;
+
 }
 
 #container2 {
-    direction: rtl;
+    direction: ltr;
     text-align: right;
-    border: cadetblue solid 5px;
     margin: auto;
+    float: right;
 }
 
 form {
