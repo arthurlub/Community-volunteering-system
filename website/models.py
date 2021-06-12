@@ -10,13 +10,6 @@ class Note(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 
-class VolunteerGroup(db.Model):
-    name = db.Column(db.String(150))
-    organization_name = db.Column(db.String(150))
-    email = db.Column(db.String(150), primary_key=True)
-    cellphone_number = db.Column(db.String(150))
-    description = db.Column(db.String(150))
-
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)

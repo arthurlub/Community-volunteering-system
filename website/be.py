@@ -51,7 +51,7 @@ def volunteer_registration():
         email_sender.send_email(value.email, subject, content)
 
         db.session.commit()
-        flash("Done!", category='success')
+        flash("נרשמת בהצלחה! בדוק את תיבת המייל שלך", category='success')
 
     elif current_user.id == 0:
         flash("אתה המנהל, אתה לא יכול להרשם להתנדבות", category='error')

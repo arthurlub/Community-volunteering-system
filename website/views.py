@@ -1,6 +1,6 @@
 from __future__ import print_function
 from flask_login import login_required, current_user
-from .models import Note, VolunteerGroup, Organization, User
+from .models import Note, Organization, User
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from . import be
 
