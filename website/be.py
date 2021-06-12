@@ -46,13 +46,12 @@ def volunteer_registration():
         value.organization_id = int(org_id)
 
         # send_email function
-       # subject = "תודה שנרשמתם להתנדבות "
-       # content = "ניתן ליצור קשר עם מנהל ההתנדבות באמצעות שליחת הודעה במייל זה. "
-       # email_sender.send_email(value.email, subject, content)
+        subject = "תודה שנרשמתם להתנדבות במערכת ההתנדבויות "
+        content = "ניתן ליצור קשר עם מנהל ההתנדבות באמצעות שליחת הודעה במייל זה. "
+        email_sender.send_email(value.email, subject, content)
 
         db.session.commit()
         flash("Done!", category='success')
-        google_calender()
 
     elif current_user.id == 0:
         flash("אתה המנהל, אתה לא יכול להרשם להתנדבות", category='error')
@@ -97,55 +96,4 @@ def stop_volunteering():
         flash("ההרשמה להתנדבות בוטלה בהצלחה ", category='success')
 
 
-def google_calender():
-    # API-GOOGLE
-    SCOPES = ['https://www.googleapis.com/auth/calendar']
-    creds = None
-    if os.path.exists('token.json'):
-        creds = Credentials.from_authorized_user_file('token.json', SCOPES)
-        # If there are no (valid) credentials available, let the user log in.
-    if not creds or not creds.valid:
-        if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
-        else:
-            flow = InstalledAppFlow.from_client_secrets_file(
-                'credentials.json', SCOPES)
-            creds = flow.run_local_server(port=8888)
-    # Save the credentials for the next run
-    # with open('token.json', 'w') as token:
-    #     token.write(creds.to_json())
 
-    # admin@gmail.com
-
-    service = build('calendar', 'v3', credentials=creds)
-    # email = request.form.get('email')
-
-    # send_email (subject, body, recepient)
-
-    event = {
-        'summary': 'לא לשכוח - נקבעה התנדבות',
-        'location': '800 Howard St., San Francisco, CA 94103',
-        'description': 'התנדבות בקהילה',
-        'start': {
-            'dateTime': '2021-05-28T09:00:00-07:00',
-            'timeZone': 'America/Los_Angeles',
-        },
-        'end': {
-            'dateTime': '2021-05-28T17:00:00-07:00',
-            'timeZone': 'America/Los_Angeles',
-        },
-        'recurrence': [
-            'RRULE:FREQ=DAILY;COUNT=2'
-        ],
-        'attendees': [
-            {'email': 'arthur931@gmail.com'}
-        ],
-        'reminders': {
-            'useDefault': False,
-            'overrides': [
-                {'method': 'email', 'minutes': 24 * 60},
-                {'method': 'popup', 'minutes': 10},
-            ],
-        },
-    }
-    event = service.events().insert(calendarId='primary', body=event).execute()
