@@ -16,12 +16,12 @@ import email_sender
 def add_note():
     note = request.form.get('note')
     if len(note) < 1:
-        flash('Note is too short!', category='error')
+        flash('ההודעה קצרה מידי!', category='error')
     else:
         new_note = Note(data=note, user_id=current_user.id)
         db.session.add(new_note)
         db.session.commit()
-        flash('Note added, please refresh the page!', category='success')
+        flash('הפתק נוסף!', category='success')
         return redirect(url_for("views.note"))
 
 
@@ -35,7 +35,7 @@ def delete_note():
             db.session.delete(note)
             db.session.commit()
         else:
-            flash(f'this is {username.first_name}\'s note, so you cant delete it', category='success')
+            flash(f' הפתק הזה שייל ל {username.first_name} ולכן לא ניתן למחוק אותו ', category='error')
         return jsonify({})
 
 
@@ -91,7 +91,7 @@ def stop_volunteering():
         user = User.query.filter_by(id=user_id).first()
     user.organization_id = None
     db.session.commit()
-    if current_user.id == 0:
+    if current_user.id == 0 or current_user.type == 2:
         flash(f" {user.first_name} הפסקת את ההתנדבות למשתמש ", category='success')
     else:
         flash("ההרשמה להתנדבות בוטלה בהצלחה ", category='success')

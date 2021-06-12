@@ -1,10 +1,7 @@
 from __future__ import print_function
 from flask_login import login_required, current_user
-
 from .models import Note, VolunteerGroup, Organization, User
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-
-from . import db
 from . import be
 
 views = Blueprint('views', __name__)
@@ -29,23 +26,6 @@ def note():
 def delete_note():
     be.delete_note()
 
-
-# page to delete
-@views.route('/company-registration', methods=['GET', 'POST'])
-def company_registration():
-    if request.method == 'POST':
-        email = request.form.get('email')
-        name = request.form.get('first_name')
-        phone = request.form.get('phone')
-        organization = request.form.get('company')
-        description = request.form.get('desc')
-        comp = VolunteerGroup(name=name, organization_name=organization, email=email, cellphone_number=phone,
-                              description=description)
-        db.session.add(comp)
-        db.session.commit()
-        flash('Done!', category='success')
-
-    return render_template("company-registration.html", user=current_user)
 
 
 @views.route('/', methods=['GET', 'POST'])
@@ -116,7 +96,7 @@ def company_page():
         org_ob = Organization.query.filter_by(id=current_user.organization_id).first()
         org_name = org_ob.name
         for user in users_list:
-            if user.id == 1 and user.organization_id == current_user.organization_id:
+            if user.type == 1 and user.organization_id == current_user.organization_id:
                 org = Organization.query.filter_by(id=user.organization_id).first()
                 temp_dict = {'user': user, 'org': org}
                 users_organization_info.append(temp_dict)
